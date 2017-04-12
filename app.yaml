@@ -1,4 +1,4 @@
-application: carter-lasa-wiki
+application: lasa-group1-heat-island
 version: 1
 runtime: python27
 api_version: 1
@@ -16,6 +16,6 @@ handlers:
 - url: /images
   static_dir: images
 - url: /.*
-  script: wiki.application
+  script: heatdb.application
 
 
