@@ -47,9 +47,16 @@ class MyHandler(webapp2.RequestHandler):
    
 class MainPage(MyHandler):
    def get(self):
-      self.response.write("testing")
+      self.render("welcome.html", testing="testing, hello!")
+
+class APIPage(MyHandler):
+   def get(self, data):
+      self.render("heatAPI.html", testing=data)
       
+PAGE_RE = r'^/(\S+)'
+
 application = webapp2.WSGIApplication([
                                ('/', MainPage),
+                               (PAGE_RE, APIPage),
                                ],
                               debug=True)
