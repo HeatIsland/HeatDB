@@ -12,7 +12,6 @@ import Cookie
 import urllib2
 import time
 from datetime import datetime, timedelta
-from google.appengine.api import memcache
 from google.appengine.ext import db
 from xml.dom import minidom
 
@@ -47,7 +46,10 @@ class MyHandler(webapp2.RequestHandler):
       self.write(json_txt)
    
 class MainPage(MyHandler):
-   def get(self):   
-   
+   def get(self):
+      self.response.write("testing")
+      
 application = webapp2.WSGIApplication([
-                               ('/', MainPage),],debug=True)
+                               ('/', MainPage),
+                               ],
+                              debug=True)
