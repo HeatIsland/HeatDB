@@ -7,6 +7,24 @@
   </head>
   <body>
     <div>Welcome to the HeatDB interface for adding temperature data</div>
-    {{testing}}
+    {{testing}}<br>
+    <h3>Manual user entry</h3>
+    <form method="get">
+	  <table>
+        <tr>
+          <td class="label">Location</td>
+          <td><input type="text" name="location"></td>
+        </tr>
+        <tr>
+          <td class="label">Description</td>
+          <td><input type="text" name="description"></td>
+        </tr>
+        <tr>
+          <td class="label">Temperature</td>
+          <td><input type="text" name="temperature"></td>
+        </tr>
+      </table>
+      <input type="submit">
+    </form>
   </body>
 </html>
