@@ -81,16 +81,27 @@ class MainPage(MyHandler):
       description = self.request.get('description')
       location = self.request.get('location')
       temperature = self.request.get('temperature')
-      message = ""
+      success = ""
+      error = ""
       if(validData(description, location, temperature)):
         entry = HeatData(location=str(location), description=description, temperature=float(temperature))
         entry.put()
         logging.info("user data is valid, put into database")
-        message = "Thank you for submitting valid data!"
+        success = "Thank you for submitting valid data!"
+      elif(description=="" and location=="" and temperature==""):
+        #this is for the first render of the website or iff they click enter with totally blank input
+        logging.info("blank data received- usual funtion of refreshing page")
       else:
         logging.info("user data is not valid, not entering")
-        message = "Invalid input, please try our mobile app"
-      self.render("welcome.html", testing=message)
+        error = "Invalid input, please try our mobile app"
+      self.render("welcome.html", success=success, error=error)
+
+class DataPage(MyHandler):
+   def get(self):
+    #entering get for the database dumper
+    datam = db.GqlQuery("SELECT * FROM HeatData ORDER BY created DESC")
+    datar = list(datam)
+    self.render("heatData.html", datar=datar)
 
 class APIPage(MyHandler): #for custon user input in the URL - no longer in use
    def get(self, data):
@@ -100,6 +111,7 @@ PAGE_RE = r'^/(\S+)'
 
 application = webapp2.WSGIApplication([
                                ('/', MainPage),
+                               (r'/data/?', DataPage),
                                (PAGE_RE, APIPage),
                                ],
                               debug=True)

@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Data Page</title>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/style.css">
+  </head>
+  <body>
+    {% for data in datar %}
+	    <table>
+        <tr>
+          <td class="label">Entry Time</td>
+          <td>{{data.created}}</td>
+        </tr>
+        <tr>
+          <td class="label">Description</td>
+          <td>{{data.description}}</td>
+        </tr>
+        <tr>
+          <td class="label">Location</td>
+          <td>{{data.location}}</td>
+        </tr>
+        <tr>
+          <td class="label">Temperature</td>
+          <td>{{data.temperature}}</td>
+        </tr>
+      </table><br>
+    {% endfor %}
+  </body>
+</html>
